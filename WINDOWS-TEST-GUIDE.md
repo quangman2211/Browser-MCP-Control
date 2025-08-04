@@ -56,19 +56,71 @@ npm install
 cd ..\..
 ```
 
+### Bước 3: Start MCP Server (QUAN TRỌNG!)
+
+**⚠️ BẮT BUỘC: Start MCP Server trước khi chạy test**
+
+```cmd
+# Mở CMD/PowerShell window mới (giữ riêng cho server)
+cd Browser-MCP-Control\src\server
+npm start
+
+# Giữ terminal này chạy - KHÔNG đóng!
+# Server chạy trên http://localhost:3000
+```
+
+### 💡 Quick Access - Tạo Shortcut Folder
+
+**Option 1: Windows Explorer Bookmark**
+1. Mở Windows Explorer
+2. Navigate to `C:\Users\[username]\Desktop\Browser-MCP-Control`
+3. Nhấn **Ctrl+D** để bookmark hoặc kéo folder vào Quick Access
+
+**Option 2: Desktop Shortcut**
+1. Right-click trên Desktop → New → Shortcut
+2. Location: `C:\Users\%USERNAME%\Desktop\Browser-MCP-Control`
+3. Name: "Browser MCP Control"
+
+**Option 3: Terminal Commands**
+```cmd
+# Command Prompt - Tạo alias
+doskey bmc=cd /d C:\Users\%USERNAME%\Desktop\Browser-MCP-Control
+
+# PowerShell - Tạo function (thêm vào $PROFILE)
+function bmc { Set-Location "C:\Users\$env:USERNAME\Desktop\Browser-MCP-Control" }
+
+# Sau đó chỉ cần gõ: bmc
+```
+
+**Option 4: Batch File (bmc.bat)**
+```batch
+@echo off
+cd /d C:\Users\%USERNAME%\Desktop\Browser-MCP-Control
+cmd
+```
+
 ## 🧪 Chạy Tests
 
-### Test Setup và Validation
+### Bước 4: Test Setup và Validation
+
+**Trong terminal thứ 2 (khác với terminal chạy server):**
 
 ```cmd
 # Vào thư mục tests
-cd tests
+cd Browser-MCP-Control\tests
 
 # Setup môi trường test
 npm run e2e:setup
 
-# Kiểm tra hệ thống hoạt động
+# Kiểm tra hệ thống hoạt động (server phải đang chạy!)
 npm run e2e:validate
+
+# Bạn sẽ thấy:
+# ✅ Node.js Version: Node.js v22.17.0
+# ✅ Test Dependencies: All dependencies present
+# ✅ MCP Server Health: Server running on port 3000  <-- QUAN TRỌNG!
+# ✅ Chrome Extension Files: Extension files present
+# ✅ CLI Tools: CLI tools accessible
 ```
 
 ### Các Loại Test
@@ -239,13 +291,13 @@ git clone https://github.com/quangman2211/Browser-MCP-Control.git
 cd Browser-MCP-Control\tests
 npm install
 
-# Step 2: Start MCP Server (Terminal mới)
-# Mở CMD/PowerShell window thứ 2
-cd ..\src\server
+# Step 2: Start MCP Server (Terminal/CMD Window 1)
+cd Browser-MCP-Control\src\server
 npm install
 npm start
+# ← Giữ terminal này chạy, KHÔNG đóng!
 
-# Step 3: Validate và test (Terminal đầu tiên)
+# Step 3: Run Tests (Terminal/CMD Window 2 - MỚI)
 cd Browser-MCP-Control\tests
 npm run e2e:validate
 npm run test:e2e
