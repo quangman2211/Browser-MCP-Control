@@ -5,7 +5,7 @@ const request = require('supertest');
 const WebSocket = require('ws');
 const HelloWorldMCPServer = require('../../src/server/server.js');
 
-describe('MCP Server Unit Tests - Mike\\'s Component', () => {
+describe('MCP Server Unit Tests - Mike\'s Component', () => {
     let server;
     let app;
     
