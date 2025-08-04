@@ -1,0 +1,71 @@
+{
+  "name": "hello-world-tests",
+  "version": "1.0.0",
+  "description": "Test suite for Hello World Multi-Agent Demo - Built by David 🧪",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest --testPathPattern=unit",
+    "test:integration": "jest --testPathPattern=integration",
+    "test:e2e": "jest --testPathPattern=e2e",
+    "test:extension": "jest --testPathPattern=extension",
+    "test:server": "jest --testPathPattern=server",
+    "test:cli": "jest --testPathPattern=cli",
+    "test:performance": "jest --testPathPattern=performance",
+    "test:browser-mcp": "jest --testPathPattern=browser-mcp-control",
+    "e2e": "node run-e2e-tests.js run",
+    "e2e:headless": "node run-e2e-tests.js run --headless",
+    "e2e:validate": "node run-e2e-tests.js validate",
+    "e2e:report": "node run-e2e-tests.js report --latest",
+    "e2e:setup": "node run-e2e-tests.js dev --setup-env",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "testing",
+    "jest",
+    "puppeteer",
+    "multi-agent",
+    "qa"
+  ],
+  "author": "David - QA Agent",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^29.0.0",
+    "puppeteer": "^21.0.0",
+    "supertest": "^6.3.0",
+    "ws": "^8.14.0",
+    "axios": "^1.5.0",
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "@jest/globals": "^29.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 30000,
+    "collectCoverageFrom": [
+      "../src/**/*.js",
+      "!../src/**/node_modules/**",
+      "!../src/**/*.config.js"
+    ],
+    "coverageDirectory": "./coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.js",
+      "**/?(*.)+(spec|test).js"
+    ],
+    "setupFilesAfterEnv": ["<rootDir>/setup.js"]
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

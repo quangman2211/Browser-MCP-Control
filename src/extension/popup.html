@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hello World Demo</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎯 Hello World</h1>
+            <p>Multi-Agent Framework Demo</p>
+        </header>
+        
+        <main class="main-content">
+            <!-- User Input Section -->
+            <div class="input-section">
+                <label for="nameInput">Enter your name:</label>
+                <div class="input-group">
+                    <input type="text" id="nameInput" placeholder="Your name here..." />
+                    <button id="greetBtn" class="btn-primary">Say Hello!</button>
+                </div>
+            </div>
+            
+            <!-- Server Communication Section -->
+            <div class="server-section">
+                <div class="connection-status">
+                    <span class="status-label">Server Status:</span>
+                    <span id="connectionStatus" class="status-disconnected">Disconnected</span>
+                    <button id="connectBtn" class="btn-secondary">Connect</button>
+                </div>
+            </div>
+            
+            <!-- Response Display Section -->
+            <div class="response-section">
+                <div id="responseArea" class="response-area">
+                    <div class="welcome-message">
+                        <h3>👋 Welcome!</h3>
+                        <p>This extension demonstrates the multi-agent development framework:</p>
+                        <ul>
+                            <li><strong>Sarah (Frontend)</strong>: Built this extension</li>
+                            <li><strong>Mike (Backend)</strong>: Created the MCP server</li>
+                            <li><strong>Emma (Integration)</strong>: Coordinated the connections</li>
+                            <li><strong>David (QA)</strong>: Ensured quality</li>
+                            <li><strong>Doc</strong>: Documented everything</li>
+                        </ul>
+                        <p>Enter your name above and click "Say Hello!" to test the server communication!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Statistics Section -->
+            <div class="stats-section">
+                <div class="stat-item">
+                    <span class="stat-label">Messages Sent:</span>
+                    <span id="messageCount" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Response Time:</span>
+                    <span id="responseTime" class="stat-value">-</span>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="agent-signature">
+                <span>Built by Sarah 💻 | Tested by David 🧪</span>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <p>Connecting to server...</p>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

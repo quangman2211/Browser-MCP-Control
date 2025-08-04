@@ -1,0 +1,64 @@
+{
+  "name": "hello-world-multi-agent-demo",
+  "version": "1.0.0",
+  "description": "Multi-Agent Development System Demo - Coordinated by Emma 🔧",
+  "scripts": {
+    "start": "npm run start:server",
+    "start:server": "cd src/server && npm start",
+    "start:server:dev": "cd src/server && npm run dev",
+    "dev:all": "concurrently \"npm run start:server:dev\" \"npm run dev:cli\"",
+    "dev:cli": "cd src/cli && npm run dev",
+    "install:all": "npm run install:server && npm run install:cli && npm run install:tests",
+    "install:server": "cd src/server && npm install",
+    "install:cli": "cd src/cli && npm install",
+    "install:tests": "cd tests && npm install",
+    "build": "npm run build:extension && npm run build:cli",
+    "build:extension": "echo 'Extension built - ready for Chrome loading'",
+    "build:cli": "cd src/cli && npm run build",
+    "test": "cd tests && npm test",
+    "test:unit": "cd tests && npm run test:unit",
+    "test:integration": "cd tests && npm run test:integration",
+    "test:e2e": "cd tests && npm run test:e2e",
+    "test:performance": "cd tests && npm run test:performance",
+    "test:coverage": "cd tests && npm run test:coverage",
+    "lint": "npm run lint:server && npm run lint:cli",
+    "lint:server": "cd src/server && npm run lint",
+    "lint:cli": "cd src/cli && npm run lint",
+    "clean": "npm run clean:server && npm run clean:cli && npm run clean:tests",
+    "clean:server": "cd src/server && rm -rf node_modules",
+    "clean:cli": "cd src/cli && rm -rf node_modules",
+    "clean:tests": "cd tests && rm -rf node_modules",
+    "health": "curl -s http://localhost:3000/health || echo 'Server not running'",
+    "status": "npm run health && echo 'Multi-Agent System Status: Ready'",
+    "demo": "echo 'Starting Hello World Multi-Agent Demo...' && npm run start:server"
+  },
+  "keywords": [
+    "multi-agent",
+    "chrome-extension", 
+    "mcp-server",
+    "cli-tool",
+    "websocket",
+    "demo",
+    "coordination"
+  ],
+  "author": "Multi-Agent Development Team",
+  "contributors": [
+    "Alex - Project Manager 🎯",
+    "Sarah - Frontend Agent 💻", 
+    "Mike - Backend Agent ⚙️",
+    "Emma - Integration Agent 🔧",
+    "David - QA Agent 🧪",
+    "Doc - Documentation Agent 📚"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "multi-agent-hello-world-demo"
+  }
+}
