@@ -172,15 +172,20 @@ PlanForNewProject/
 "C:\\Users\\*"
 Huong-Dan-Test.*
 
+# Development Configuration & Documentation (ignore)
+.claude/
+todo/
+docs/
+CLAUDE.md
+
 # ==========================================
-# ESSENTIAL FILES TO KEEP:
+# ESSENTIAL FILES TO KEEP (core system only):
 # ==========================================
-# ✅ src/server/ - Mike's MCP Server
-# ✅ src/cli/ - Emma's CLI tool  
-# ✅ src/extension/ - Sarah's Chrome Extension
-# ✅ tests/ - David's E2E tests
-# ✅ docs/ - Documentation
+# ✅ src/server/ - MCP Server
+# ✅ src/cli/ - CLI tool  
+# ✅ src/extension/ - Chrome Extension
+# ✅ tests/ - E2E testing framework
 # ✅ package.json - Dependencies definition
 # ✅ README.md - Project overview
-# ✅ CLAUDE.md - 11 Golden Rules
+# ✅ start-demo.sh - Demo script
 # ✅ .gitignore - This file
