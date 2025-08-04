@@ -67,36 +67,7 @@ npm start
 
 # Giữ terminal này chạy - KHÔNG đóng!
 # Server chạy trên http://localhost:3000
-```
 
-### 💡 Quick Access - Tạo Shortcut Folder
-
-**Option 1: Windows Explorer Bookmark**
-1. Mở Windows Explorer
-2. Navigate to `C:\Users\[username]\Desktop\Browser-MCP-Control`
-3. Nhấn **Ctrl+D** để bookmark hoặc kéo folder vào Quick Access
-
-**Option 2: Desktop Shortcut**
-1. Right-click trên Desktop → New → Shortcut
-2. Location: `C:\Users\%USERNAME%\Desktop\Browser-MCP-Control`
-3. Name: "Browser MCP Control"
-
-**Option 3: Terminal Commands**
-```cmd
-# Command Prompt - Tạo alias
-doskey bmc=cd /d C:\Users\%USERNAME%\Desktop\Browser-MCP-Control
-
-# PowerShell - Tạo function (thêm vào $PROFILE)
-function bmc { Set-Location "C:\Users\$env:USERNAME\Desktop\Browser-MCP-Control" }
-
-# Sau đó chỉ cần gõ: bmc
-```
-
-**Option 4: Batch File (bmc.bat)**
-```batch
-@echo off
-cd /d C:\Users\%USERNAME%\Desktop\Browser-MCP-Control
-cmd
 ```
 
 ## 🧪 Chạy Tests
@@ -171,39 +142,69 @@ npm run test:coverage
 ```
 Error: spawn npm ENOENT
 syscall: 'spawn npm'
+errno: -4058
+code: 'ENOENT'
 ```
 
-**Nguyên nhân**: Windows không tìm thấy npm command hoặc spawning process issue.
+**🎯 Nguyên nhân**: Windows không thể spawn npm process từ custom test runner.
 
-**Giải pháp**:
+**✅ Giải pháp NHANH NHẤT**:
 
 ```cmd
-# Option 1: Chạy test trực tiếp với npm
-npm test -- --testPathPattern=browser-mcp-control.test.js
+# Thay vì: npm run e2e (bị lỗi)
+# Dùng:   npm test trực tiếp
 
-# Option 2: Sử dụng npx
+npm test -- --testPathPattern=browser-mcp-control.test.js --verbose
+```
+
+**🔧 Các giải pháp khác**:
+
+```cmd
+# Option 1: Jest trực tiếp
 npx jest --testPathPattern=e2e --verbose
 
-# Option 3: Chạy từng loại test
-npm run test:e2e
-npm run test:integration
+# Option 2: Test từng loại
 npm run test:unit
+npm run test:integration  
+npm run test:performance
 
-# Option 4: Kiểm tra npm PATH
+# Option 3: Jest với pattern cụ thể
+npx jest e2e/browser-mcp-control.test.js
+
+# Option 4: Bypass custom runner hoàn toàn
+cd Browser-MCP-Control\tests
+npx jest
+```
+
+**🛠️ Debug PATH Issues**:
+
+```cmd
+# Bước 1: Kiểm tra npm có trong PATH
 where npm
-# Nếu không có kết quả, thêm C:\Program Files\nodejs\ vào System PATH
 
-# Nếu thấy npm nhưng vẫn lỗi ENOENT, restart terminal và thử:
-# Đóng tất cả CMD/PowerShell windows
-# Mở CMD/PowerShell mới với quyền Administrator  
-# Thử lại npm commands
+# Bạn sẽ thấy:
+# C:\Program Files\nodejs\npm
+# C:\Program Files\nodejs\npm.cmd
 
-# Cách thêm Node.js vào PATH (nếu cần):
-# 1. Nhấn Win + R, gõ "sysdm.cpl"
-# 2. Chọn tab "Advanced" > "Environment Variables" 
-# 3. Trong "System variables", tìm "Path", nhấn "Edit"
-# 4. Nhấn "New" và thêm: C:\Program Files\nodejs\
-# 5. Nhấn OK và restart CMD/PowerShell
+# Bước 2: Nếu KHÔNG thấy npm, thêm vào PATH:
+# Win + R → gõ "sysdm.cpl" → Advanced → Environment Variables
+# System variables → Path → Edit → New → C:\Program Files\nodejs\
+
+# Bước 3: Restart CMD/PowerShell và thử lại
+```
+
+**⚡ Solution cho Windows 10/11**:
+
+```cmd
+# Nếu vẫn lỗi, restart với Administrator:
+# 1. Đóng TẤT CẢ CMD/PowerShell windows
+# 2. Right-click Start → "Command Prompt (Admin)" hoặc "PowerShell (Admin)"
+# 3. Chạy lại commands
+
+# Alternative: Use PowerShell thay Command Prompt
+powershell
+cd Browser-MCP-Control\tests
+npm test -- --testPathPattern=browser-mcp-control.test.js
 ```
 
 ### Lỗi JavaScript Syntax Error
@@ -303,14 +304,41 @@ npm run e2e:validate
 npm run test:e2e
 ```
 
-### Test Nhanh (Nếu gặp lỗi spawn):
+### ⚡ Test Commands Alternatives (Khi gặp lỗi spawn)
+
+**Nếu `npm run e2e` bị lỗi "spawn npm ENOENT", dùng:**
 
 ```cmd
-# Thay vì npm run test:e2e, dùng:
-npm test -- --testPathPattern=browser-mcp-control.test.js
+# ✅ RECOMMEND: Jest trực tiếp
+npm test -- --testPathPattern=browser-mcp-control.test.js --verbose
 
-# Hoặc
+# ✅ ALTERNATIVE: npx jest  
 npx jest --testPathPattern=e2e --verbose
+
+# ✅ SPECIFIC FILE: Test file cụ thể
+npx jest e2e/browser-mcp-control.test.js
+
+# ✅ ALL TESTS: Chạy tất cả tests
+npx jest
+
+# ✅ WITH COVERAGE: Test + coverage
+npx jest --coverage
+```
+
+**🎯 Commands cho từng tình huống:**
+
+```cmd
+# Khi custom runner fail
+npm test                                    # Chạy tất cả Jest tests
+
+# Khi chỉ muốn test E2E
+npm test -- --testPathPattern=e2e          # E2E tests only
+
+# Khi muốn verbose output
+npm test -- --verbose                      # Chi tiết output
+
+# Khi muốn test specific file
+npm test -- browser-mcp-control.test.js    # File cụ thể
 ```
 
 ### Test Đầy Đủ (10 phút):
