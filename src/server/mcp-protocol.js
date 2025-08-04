@@ -215,7 +215,8 @@ class MCPProtocolHandler {
                 return false; // Not handled by this protocol
             }
             
-            const { executionId, result, error } = message.data || {};
+            const responseData = message.data || {};
+            const { executionId, result, error, success } = responseData;
             
             if (!executionId) {
                 this.logger.warn('Extension response missing executionId', { message });
@@ -240,15 +241,19 @@ class MCPProtocolHandler {
             
             // Prepare final result
             const finalResult = {
-                success: !error,
-                result: result || (error ? `Error: ${error}` : 'Execution completed'),
+                success: success !== undefined ? success : !error,
+                result: result || responseData.message || (error ? `Error: ${error}` : 'Execution completed'),
                 timestamp: new Date().toISOString(),
                 executionMetadata: {
                     agent: 'mike',
                     extensionId: clientInfo.id,
                     executionTime: Date.now() - execution.startTime,
-                    tabId: message.data?.tabId,
-                    url: message.data?.url
+                    tabId: responseData.tabId,
+                    url: responseData.page_url,
+                    browserInfo: {
+                        title: responseData.page_title,
+                        url: responseData.page_url
+                    }
                 }
             };
             

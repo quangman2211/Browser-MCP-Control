@@ -781,4 +781,13 @@ process.on('SIGINT', async () => {
     process.exit(0);
 });
 
+// Initialize and run CLI if this file is run directly
+if (require.main === module) {
+    const cli = new HelloWorldCLI();
+    cli.run().catch(error => {
+        console.error(chalk.red('CLI Error:'), error.message);
+        process.exit(1);
+    });
+}
+
 module.exports = { HelloWorldCLI };

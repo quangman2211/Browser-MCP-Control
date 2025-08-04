@@ -522,8 +522,21 @@ class HelloWorldMCPServer {
         this.app.use((error, req, res, next) => {
             this.logger.error('Express error:', error);
             
-            res.status(500).json({
-                error: 'Internal server error',
+            // Determine appropriate HTTP status code
+            let statusCode = 500;
+            let errorMessage = 'Internal server error';
+            
+            if (error.type === 'entity.parse.failed') {
+                // JSON parsing error should return 400
+                statusCode = 400;
+                errorMessage = 'Bad Request - Invalid JSON';
+            } else if (error.statusCode) {
+                statusCode = error.statusCode;
+                errorMessage = error.message || errorMessage;
+            }
+            
+            res.status(statusCode).json({
+                error: errorMessage,
                 agent: 'mike',
                 timestamp: new Date().toISOString()
             });

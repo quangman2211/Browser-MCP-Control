@@ -84,12 +84,14 @@ class HelloWorldContent {
         try {
             const message = data.message || 'Hello World';
             const timestamp = data.timestamp || Date.now();
+            const executionId = data.executionId;
             
             // Execute console.log safely
             console.log(message);
             
             // Capture execution info
             const executionInfo = {
+                executionId: executionId,
                 success: true,
                 message: message,
                 timestamp: timestamp,
@@ -107,6 +109,7 @@ class HelloWorldContent {
             
         } catch (error) {
             const errorInfo = {
+                executionId: data.executionId,
                 success: false,
                 error: error.message,
                 page_url: window.location.href,

@@ -300,6 +300,7 @@ class HelloWorldBackground {
             
             if (tabs.length === 0) {
                 this.sendMCPResponse('console_hello_response', {
+                    executionId: data.executionId,
                     success: false,
                     error: 'No active tab found'
                 });
@@ -314,6 +315,7 @@ class HelloWorldBackground {
         } catch (error) {
             console.error('Background: Console execution error:', error);
             this.sendMCPResponse('console_hello_response', {
+                executionId: data.executionId,
                 success: false,
                 error: error.message
             });
@@ -347,7 +349,8 @@ class HelloWorldBackground {
                 type: 'execute_console_hello',
                 data: {
                     message: data.message || 'Hello World',
-                    timestamp: Date.now()
+                    timestamp: Date.now(),
+                    executionId: data.executionId
                 }
             }, (response) => {
                 if (chrome.runtime.lastError) {
@@ -355,6 +358,7 @@ class HelloWorldBackground {
                     console.error('Background: Tab message error:', errorMsg);
                     
                     const result = {
+                        executionId: data.executionId,
                         success: false,
                         error: errorMsg,
                         tabId: tabId
@@ -365,6 +369,7 @@ class HelloWorldBackground {
                     resolve(result);
                 } else {
                     const result = response || { success: false, error: 'No response from content script' };
+                    result.executionId = data.executionId;
                     
                     // Send response to MCP Server if connected
                     this.sendMCPResponse('console_hello_response', result);
