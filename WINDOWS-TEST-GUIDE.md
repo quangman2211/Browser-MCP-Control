@@ -114,6 +114,82 @@ npm run test:coverage
 
 ## 🔧 Khắc Phục Sự Cố Windows
 
+### Lỗi "spawn npm ENOENT" (Phổ Biến Trên Windows)
+
+```
+Error: spawn npm ENOENT
+syscall: 'spawn npm'
+```
+
+**Nguyên nhân**: Windows không tìm thấy npm command hoặc spawning process issue.
+
+**Giải pháp**:
+
+```cmd
+# Option 1: Chạy test trực tiếp với npm
+npm test -- --testPathPattern=browser-mcp-control.test.js
+
+# Option 2: Sử dụng npx
+npx jest --testPathPattern=e2e --verbose
+
+# Option 3: Chạy từng loại test
+npm run test:e2e
+npm run test:integration
+npm run test:unit
+
+# Option 4: Kiểm tra npm PATH
+where npm
+# Nếu không có kết quả, thêm C:\Program Files\nodejs\ vào System PATH
+
+# Nếu thấy npm nhưng vẫn lỗi ENOENT, restart terminal và thử:
+# Đóng tất cả CMD/PowerShell windows
+# Mở CMD/PowerShell mới với quyền Administrator  
+# Thử lại npm commands
+
+# Cách thêm Node.js vào PATH (nếu cần):
+# 1. Nhấn Win + R, gõ "sysdm.cpl"
+# 2. Chọn tab "Advanced" > "Environment Variables" 
+# 3. Trong "System variables", tìm "Path", nhấn "Edit"
+# 4. Nhấn "New" và thêm: C:\Program Files\nodejs\
+# 5. Nhấn OK và restart CMD/PowerShell
+```
+
+### Lỗi JavaScript Syntax Error
+
+```
+SyntaxError: Unexpected token, expected "," (112:49)
+console.log('🧪 Test Suite Started - David\\'s QA Framework');
+```
+
+**Nguyên nhân**: Backslash không được escape đúng trong JavaScript strings.
+
+**Giải pháp**: Pull latest code từ GitHub (đã được fix tự động).
+
+```cmd
+git pull origin master
+```
+
+### Lỗi MCP Server Not Running
+
+```
+❌ MCP Server Health: Server not running (start with: npm run start:server)
+```
+
+**Giải pháp**: Start MCP Server trong terminal riêng biệt.
+
+```cmd
+# Terminal/CMD Window 1: Start MCP Server
+cd src\server
+npm install
+npm start
+# Để nguyên terminal này chạy
+
+# Terminal/CMD Window 2: Run tests
+cd tests
+npm run e2e:validate
+npm run test:e2e
+```
+
 ### Lỗi PowerShell Execution Policy
 
 ```powershell
@@ -158,10 +234,31 @@ taskkill /PID <process_id> /F
 ### Test Cơ Bản (5 phút):
 
 ```cmd
-cd tests
+# Step 1: Clone và cài đặt
+git clone https://github.com/quangman2211/Browser-MCP-Control.git
+cd Browser-MCP-Control\tests
 npm install
+
+# Step 2: Start MCP Server (Terminal mới)
+# Mở CMD/PowerShell window thứ 2
+cd ..\src\server
+npm install
+npm start
+
+# Step 3: Validate và test (Terminal đầu tiên)
+cd Browser-MCP-Control\tests
 npm run e2e:validate
-npm run e2e:headless
+npm run test:e2e
+```
+
+### Test Nhanh (Nếu gặp lỗi spawn):
+
+```cmd
+# Thay vì npm run test:e2e, dùng:
+npm test -- --testPathPattern=browser-mcp-control.test.js
+
+# Hoặc
+npx jest --testPathPattern=e2e --verbose
 ```
 
 ### Test Đầy Đủ (10 phút):
