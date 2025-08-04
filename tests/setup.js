@@ -109,7 +109,7 @@ expect.extend({
 
 // Global test hooks
 beforeAll(async () => {
-    console.log('🧪 Test Suite Started - David\\'s QA Framework');
+    console.log('🧪 Test Suite Started - David\'s QA Framework');
     console.log('Multi-Agent Hello World Testing Environment');
 });
 
