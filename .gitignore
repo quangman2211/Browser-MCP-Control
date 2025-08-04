@@ -152,6 +152,7 @@ archive/
 
 # Exception: Keep essential icons
 !src/extension/icons/
+!src/extension/icons/*.png
 !docs/images/
 
 # ==========================================
