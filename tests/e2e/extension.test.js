@@ -4,7 +4,7 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
 
-describe('Chrome Extension E2E Tests - Sarah\\'s Component', () => {
+describe('Chrome Extension E2E Tests - Sarah\'s Component', () => {
     let browser;
     let extensionPage;
     let extensionId;
