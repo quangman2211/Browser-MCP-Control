@@ -1,0 +1,179 @@
+# ==========================================
+# Browser-MCP-Control System .gitignore
+# ==========================================
+# Chỉ upload essential system files
+# Loại bỏ dependencies, logs, và temporary files
+
+# ==========================================
+# Node.js Dependencies
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ==========================================
+# Environment Variables & Secrets
+# ==========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+config/local.json
+secrets.json
+credentials.json
+
+# ==========================================
+# Build Outputs
+# ==========================================
+dist/
+build/
+out/
+.cache/
+
+# Chrome Extension build files
+src/extension/dist/
+src/extension/*.crx
+src/extension/*.pem
+
+# ==========================================
+# Logs & Debug Files
+# ==========================================
+*.log
+logs/
+debug.log
+error.log
+combined.log
+
+# Browser console logs
+browser-console.log
+extension-debug.log
+mcp-server.log
+
+# ==========================================
+# Testing Artifacts
+# ==========================================
+coverage/
+test-results/
+tests/screenshots/
+tests/videos/
+tests/artifacts/
+.cache/puppeteer/
+
+# ==========================================
+# Operating System Files
+# ==========================================
+# Windows
+Thumbs.db
+*.tmp
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==========================================
+# IDE & Editor Files
+# ==========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ==========================================
+# Browser & Extension Specific
+# ==========================================
+browser-profiles/
+test-profiles/
+chrome-data/
+*.har
+
+# ==========================================
+# MCP Server Runtime Files
+# ==========================================
+src/server/sessions/
+src/server/temp/
+src/server/uploads/
+*.db
+*.sqlite
+
+# ==========================================
+# CLI Tool Runtime Files
+# ==========================================
+src/cli/.config/
+src/cli/user-config.json
+cli-output.txt
+cli-debug.log
+
+# ==========================================
+# Temporary Files
+# ==========================================
+tmp/
+temp/
+.tmp/
+*.temp
+
+# ==========================================
+# Archives (không cần thiết)
+# ==========================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ==========================================
+# Media Files (không cần cho system)
+# ==========================================
+*.mp4
+*.avi
+*.mov
+*.mp3
+*.wav
+*.jpg
+*.jpeg
+*.png
+*.gif
+
+# Exception: Keep essential icons
+!src/extension/icons/
+!docs/images/
+
+# ==========================================
+# Development Tools Cache
+# ==========================================
+.eslintcache
+.tscache/
+.webpack/
+
+# ==========================================
+# Personal Development Files
+# ==========================================
+my-test-*
+personal-*
+debug-*
+local-*
+
+# ==========================================
+# ESSENTIAL FILES TO KEEP:
+# ==========================================
+# ✅ src/server/ - Mike's MCP Server
+# ✅ src/cli/ - Emma's CLI tool  
+# ✅ src/extension/ - Sarah's Chrome Extension
+# ✅ tests/ - David's E2E tests
+# ✅ docs/ - Documentation
+# ✅ package.json - Dependencies definition
+# ✅ README.md - Project overview
+# ✅ CLAUDE.md - 11 Golden Rules
+# ✅ .gitignore - This file
