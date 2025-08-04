@@ -126,8 +126,9 @@ temp/
 *.temp
 
 # ==========================================
-# Archives (không cần thiết)
+# Archives & Development History (không cần thiết)
 # ==========================================
+archive/
 *.zip
 *.tar.gz
 *.rar
@@ -158,12 +159,15 @@ temp/
 .webpack/
 
 # ==========================================
-# Personal Development Files
+# Personal Development Files & Development History
 # ==========================================
 my-test-*
 personal-*
 debug-*
 local-*
+PlanForNewProject/
+"C:\\Users\\*"
+Huong-Dan-Test.*
 
 # ==========================================
 # ESSENTIAL FILES TO KEEP:
