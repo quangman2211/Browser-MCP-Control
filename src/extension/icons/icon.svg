@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="128" height="128" rx="20" fill="#4285f4"/>
+  
+  <!-- Main icon - Browser window -->
+  <rect x="16" y="24" width="96" height="80" rx="8" fill="white"/>
+  
+  <!-- Browser top bar -->
+  <rect x="16" y="24" width="96" height="16" rx="8" fill="#f0f0f0"/>
+  
+  <!-- Browser buttons -->
+  <circle cx="28" cy="32" r="3" fill="#ff5f57"/>
+  <circle cx="40" cy="32" r="3" fill="#ffbd2e"/>
+  <circle cx="52" cy="32" r="3" fill="#28ca42"/>
+  
+  <!-- Console/Terminal representation -->
+  <rect x="24" y="48" width="80" height="48" rx="4" fill="#1a1a1a"/>
+  
+  <!-- Console text lines -->
+  <rect x="28" y="56" width="40" height="2" fill="#00ff00"/>
+  <rect x="28" y="64" width="60" height="2" fill="#00ff00"/>
+  <rect x="28" y="72" width="35" height="2" fill="#00ff00"/>
+  <rect x="28" y="80" width="50" height="2" fill="#00ff00"/>
+  
+  <!-- MCP indicator -->
+  <text x="64" y="115" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">MCP</text>
+</svg>
